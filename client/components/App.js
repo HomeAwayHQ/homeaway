@@ -62,18 +62,26 @@ class App extends React.Component {
 
   render() {
     const Page = this.state.component;
-    return (
-      <div>
-        {this.state.navigationError ?
-        <div>
-          <p>Encountered an error:</p>
-          <p>{this.state.navigationError}</p>
-          <br></br>
-          <p>Please try again later. If the problem persists, send us the error message above. Our bad!</p>
-        </div> :
-        <Page params={this.state.params} />}
-      </div>
-    );
+    let lowerURL = this.state.url.toLowerCase(),
+        toOuterRoute = lowerURL === '/login' || lowerURL === '/join',
+        authenticated = this.props.app.getStore('AuthenticationStore').getState().authenticated;
+        return (
+          <div>
+            {this.state.navigationError ?
+            <div>
+              <p>Encountered an error:</p>
+              <p>{this.state.navigationError}</p>
+              <br></br>
+              <p>Our bad! If the problem persists, please send us the error message above.</p>
+            </div> :
+            toOuterRoute || !authenticated ?
+            <Page params={this.state.params} /> :
+            <div>
+              <TabBar />
+              <Page params={this.state.params} />
+            </div>}
+          </div>
+        );
   }
 }
 

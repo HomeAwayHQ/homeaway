@@ -1,0 +1,21 @@
+.tabBar {
+  width: 100%;
+  height: 60px;
+
+  .surveyTab {
+    display: inline-block;
+    width: 33%;
+    float: left;
+  }
+
+  .storeTab {
+    display: inline-block;
+    width: 33.34%;
+  }
+
+  .profileTab {
+    display: inline-block;
+    width: 33.33%;
+    float: right;
+  }
+}
