@@ -2,6 +2,9 @@ import Routr from 'routr';
 
 import Join from './components/pages/join/Join';
 import Login from './components/pages/login/Login';
+import SurveyFeed from './components/pages/surveyFeed/SurveyFeed';
+import Shop from './components/pages/shop/Shop';
+import Profile from './components/pages/profile/Profile';
 
 const router = new Routr({
 
@@ -32,13 +35,14 @@ const router = new Routr({
   //   component: SurveyDetails,
   //   action: 'SurveyDetailsActions',
   // },
-  // shop: {
-  //   path: '/shop',
-  //   method: 'get',
-  //   title: 'HomeAway - Shop',
-  //   component: Shop,
-  //   action: 'ShopActions',
-  // },
+  shop: {
+    path: '/shop',
+    method: 'get',
+    title: 'HomeAway - Shop',
+    component: Shop,
+    // action: 'ShopActions',
+    requireAuth: true
+  },
   // rewardDetails: {
   //   path: '/shop/:id',
   //   method: 'get',
@@ -46,13 +50,14 @@ const router = new Routr({
   //   component: RewardDetails,
   //   action: 'RewardDetailsActions',
   // },
-  // profile: {
-  //   path: '/profile',
-  //   method: 'get',
-  //   title: 'HomeAway - Profile',
-  //   component: Profile,
-  //   action: 'ProfileActions'
-  // }
+  profile: {
+    path: '/profile',
+    method: 'get',
+    title: 'HomeAway - Profile',
+    component: Profile,
+    // action: 'ProfileActions'
+    requireAuth: true
+  }
 });
 
 export default router;
