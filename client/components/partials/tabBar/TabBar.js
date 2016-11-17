@@ -20,6 +20,7 @@ class TabBar extends React.Component {
       this.setState({
         selectedTab: tab
       });
+      this.props.onTabSelect(tab);
     }
   }
 
@@ -29,35 +30,47 @@ class TabBar extends React.Component {
         <div className="surveyTab" style={this.state.selectedTab !== 'survey' ? null : {
           backgroundColor: 'lightblue',
           color: 'white'
+        }} onClick={(e) => {
+          e.preventDefault();
+          this.handleTabSelect('survey');
+          this.context
+          .getActions('NavActions')
+          .navigate('/');
+          if (process.env.BROWSER) {
+            history.pushState(null, '', '/');
+          }
         }}>
-          <Link href="/" onClick={(e) => {
-            e.preventDefault();
-            this.handleTabSelect('survey');
-          }}>
-            Surveys
-          </Link>
+          Surveys
         </div>
         <div className="shopTab" style={this.state.selectedTab !== 'shop' ? null : {
           backgroundColor: 'lightblue',
           color: 'white'
+        }} onClick={(e) => {
+          e.preventDefault();
+          this.handleTabSelect('shop');
+          this.context
+          .getActions('NavActions')
+          .navigate('/shop');
+          if (process.env.BROWSER) {
+            history.pushState(null, '', '/shop');
+          }
         }}>
-          <Link href="/shop" onClick={(e) => {
-            e.preventDefault();
-            this.handleTabSelect('shop');
-          }}>
-            Rewards
-          </Link>
+          Rewards
         </div>
         <div className="profileTab" style={this.state.selectedTab !== 'profile' ? null : {
           backgroundColor: 'lightblue',
           color: 'white'
+        }} onClick={(e) => {
+          e.preventDefault();
+          this.handleTabSelect('profile');
+          this.context
+          .getActions('NavActions')
+          .navigate('/profile');
+          if (process.env.BROWSER) {
+            history.pushState(null, '', '/profile');
+          }
         }}>
-          <Link href="/profile" onClick={(e) => {
-            e.preventDefault();
-            this.handleTabSelect('profile');
-          }}>
-            Profile
-          </Link>
+          Profile
         </div>
       </div>
     );
