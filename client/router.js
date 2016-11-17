@@ -17,13 +17,14 @@ const router = new Routr({
     title: 'HomeAway - Login',
     component: Login,
   },
-  // surveys: {
-  //   path: '/',
-  //   method: 'get',
-  //   title: 'HomeAway - Surveys',
-  //   component: SurveyFeed,
-  //   action: 'SurveyFeedActions',
-  // },
+  surveys: {
+    path: '/',
+    method: 'get',
+    title: 'HomeAway - Surveys',
+    component: SurveyFeed,
+    action: 'SurveyFeedActions',
+    requireAuth: true
+  },
   // surveyDetails: {
   //   path: '/survey/:id',
   //   method: 'get',
