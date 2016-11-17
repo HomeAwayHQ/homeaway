@@ -1,0 +1,33 @@
+#!/bin/env node
+
+require('babel/register');
+require('dotenv').config();
+
+console.log('\nStarting HomeAway...\n');
+
+var NODE_IP = process.env.NODE_IP,
+    NODE_PORT = process.env.NODE_PORT,
+    MONGO_IP = process.env.MONGO_IP;
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://' + MONGO_IP + '/homeaway');
+var connection = mongoose.connection;
+
+connection.on('error', function() {
+  console.log('  Failed to connect to MongoDB. Make sure mongod is running and check your connectivity.');
+  process.exit(0);
+});
+
+connection.on('open', function() {
+  console.log('  Connected to MongoDB at ' + MONGO_IP + '\n');
+  var server = require('../server/server');
+  server.listen(NODE_PORT, NODE_IP, function() {
+    console.log('\nHomeAway is live at ' + NODE_IP + ':' + NODE_PORT + '\n');
+  });
+});
+
+process.on('SIGINT', function() {
+  connection.close(function() {
+    process.exit(0);
+  });
+});
