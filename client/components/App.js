@@ -1,6 +1,8 @@
 import React from 'react';
 
 import TabBar from './partials/tabBar/TabBar';
+import NavBar from './partials/navBar/NavBar';
+
 import contextTypes from '../util/contextTypes';
 
 class App extends React.Component {
@@ -28,7 +30,8 @@ class App extends React.Component {
       navigationError: navState.navigationError,
       url: navState.url,
       params: navState.params,
-      component: navState.component || props.component
+      component: navState.component || props.component,
+      navBarText: 'Today\'s surveys'
     }
   }
 
@@ -55,9 +58,26 @@ class App extends React.Component {
         navigationError: null,
         url: state.url,
         params: state.params,
+        title: state.title,
         component: state.component
       });
       document.title = state.title;
+    }
+  }
+
+  handleTabSelect = (tab) => {
+    if (tab === 'survey') {
+      this.setState({
+        navBarText: 'Today\'s surveys'
+      });
+    } else if (tab === 'shop') {
+      this.setState({
+        navBarText: 'Browse rewards'
+      });
+    } else {
+      this.setState({
+        navBarText: 'Your profile'
+      });
     }
   }
 
@@ -78,7 +98,8 @@ class App extends React.Component {
             toOuterRoute || !authenticated ?
             <Page params={this.state.params} /> :
             <div>
-              <TabBar />
+              <NavBar title={this.state.navBarText} />
+              <TabBar onTabSelect={this.handleTabSelect} />
               <Page params={this.state.params} />
             </div>}
           </div>
