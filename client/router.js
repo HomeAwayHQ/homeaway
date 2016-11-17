@@ -1,18 +1,10 @@
 import Routr from 'routr';
 
-import Home from './components/pages/home/Home';
 import Join from './components/pages/join/Join';
 import Login from './components/pages/login/Login';
 
 const router = new Routr({
 
-  home: {
-    path: '/',
-    method: 'get',
-    title: 'HomeAway',
-    component: Home,
-    requireAuth: true
-  },
   join: {
     path: '/join',
     method: 'get',
