@@ -1,5 +1,6 @@
 import React from 'react';
 
+import TabBar from './partials/tabBar/TabBar';
 import contextTypes from '../util/contextTypes';
 
 class App extends React.Component {
@@ -64,7 +65,7 @@ class App extends React.Component {
     const Page = this.state.component;
     let lowerURL = this.state.url.toLowerCase(),
         toOuterRoute = lowerURL === '/login' || lowerURL === '/join',
-        authenticated = this.props.app.getStore('AuthenticationStore').getState().authenticated;
+        authenticated = this.props.app.getStore('AuthStore').getState().authenticated;
         return (
           <div>
             {this.state.navigationError ?
