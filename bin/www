@@ -4,12 +4,10 @@ require('babel/register');
 
 console.log('\nStarting HomeAway...\n');
 
-var NODE_IP = process.env.NODE_IP,
-    NODE_PORT = process.env.NODE_PORT,
-    MONGO_IP = process.env.MONGO_IP;
+var NODE_PORT = 80;
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://' + MONGO_IP + '/homeaway');
+mongoose.connect('mongodb://admin:iDcRtD2cRVs0uDi2@cluster0-shard-00-00-xsinv.mongodb.net:27017,cluster0-shard-00-01-xsinv.mongodb.net:27017,cluster0-shard-00-02-xsinv.mongodb.net:27017/admin?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin');
 var connection = mongoose.connection;
 
 connection.on('error', function() {
@@ -18,10 +16,10 @@ connection.on('error', function() {
 });
 
 connection.on('open', function() {
-  console.log('  Connected to MongoDB at ' + MONGO_IP + '\n');
+  console.log('  Connected to MongoDB.\n');
   var server = require('../server/server');
-  server.listen(NODE_PORT, NODE_IP, function() {
-    console.log('\nHomeAway is live at ' + NODE_IP + ':' + NODE_PORT + '\n');
+  server.listen(NODE_PORT, function() {
+    console.log('\nHomeAway is live on port ' + NODE_PORT + '\n');
   });
 });
 
