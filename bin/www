@@ -1,7 +1,6 @@
 #!/bin/env node
 
 require('babel/register');
-require('dotenv').config();
 
 console.log('\nStarting HomeAway...\n');
 

@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import Flux from './Flux';
 import App from './components/App';
 
-const flux = new Flux({baseURL: 'http://localhost'});
+const flux = new Flux({baseURL: 'http://35.164.105.76'});
 
 flux.bootstrap(window.AppState);
 

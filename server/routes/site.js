@@ -14,7 +14,7 @@ var App = require('../../client/components/App');
 var Layout = require('../../client/components/Layout');
 
 router.use(function(req, res, next) {
-  var flux = new Flux({baseURL: 'http://localhost', cookies: req.cookies});
+  var flux = new Flux({baseURL: 'http://35.164.105.76', cookies: req.cookies});
   flux.getActions('NavActions')
   .navigate(req.url)
   .then(() => {
