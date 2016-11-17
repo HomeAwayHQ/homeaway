@@ -51,6 +51,8 @@ router.get('/self', function(req, res) {
 });
 
 require('../models/AccountModel').register(router, '/account');
+require('../models/ItemModel').register(router, '/item');
+require('../models/SurveyModel').register(router, '/survey');
 require('../models/UserModel').register(router, '/user');
 
 module.exports = router;
