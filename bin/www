@@ -1,13 +1,15 @@
 #!/bin/env node
 
 require('babel/register');
+require('dotenv').config();
 
 console.log('\nStarting HomeAway...\n');
 
-var NODE_PORT = 80;
+var NODE_PORT = process.env.NODE_PORT,
+    MONGO_DB = process.env.MONGO_DB;
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://admin:iDcRtD2cRVs0uDi2@cluster0-shard-00-00-xsinv.mongodb.net:27017,cluster0-shard-00-01-xsinv.mongodb.net:27017,cluster0-shard-00-02-xsinv.mongodb.net:27017/admin?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin');
+mongoose.connect(MONGO_DB);
 var connection = mongoose.connection;
 
 connection.on('error', function() {
