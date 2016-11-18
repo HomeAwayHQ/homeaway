@@ -50,9 +50,13 @@ router.get('/self', function(req, res) {
   res.send(req.user);
 });
 
-require('../models/AccountModel').register(router, '/account');
-require('../models/ItemModel').register(router, '/item');
 require('../models/SurveyModel').register(router, '/survey');
+require('../models/ResponseModel').register(router, '/response');
+
+require('../models/ItemModel').register(router, '/item');
+require('../models/PurchaseModel').register(router, '/purchase');
+
 require('../models/UserModel').register(router, '/user');
+require('../models/AccountModel').register(router, '/account');
 
 module.exports = router;
